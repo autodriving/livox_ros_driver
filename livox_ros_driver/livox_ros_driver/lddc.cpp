@@ -176,6 +176,7 @@ uint32_t Lddc::PublishPointcloud2(LidarDataQueue *queue, uint32_t packet_num,
 
   sensor_msgs::PointCloud2 cloud;
   InitPointcloud2MsgHeader(cloud);
+  cloud.header.frame_id = cloud.header.frame_id + lidar->info.broadcast_code;
   cloud.data.resize(packet_num * kMaxPointPerEthPacket *
                     sizeof(LivoxPointXyzrtl));
   cloud.point_step = sizeof(LivoxPointXyzrtl);
